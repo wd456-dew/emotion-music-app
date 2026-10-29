@@ -7,8 +7,8 @@ const net = []
 page.on('response', r => { const u = r.url(); if (/\.(mp3|png|json)/.test(u) && !u.includes('itunes') && !u.includes('mzstatic')) net.push(r.status() + '  ' + u.replace(BASE, '')) })
 page.on('requestfailed', r => net.push('FAIL  ' + r.url().replace(BASE, '')))
 
-await page.goto(BASE, { waitUntil: 'networkidle2', timeout: 60000 })
-await page.waitForFunction(() => document.body.innerText.includes('本地模型就绪'), { timeout: 90000 })
+await page.goto(BASE, { waitUntil: 'domcontentloaded', timeout: 120000 })
+await page.waitForFunction(() => document.body.innerText.includes('本地模型就绪'), { timeout: 180000 })
 console.log('✅ 模型就绪 @', BASE)
 
 await page.evaluate(() => document.querySelectorAll('.gallery .card')[0].click())

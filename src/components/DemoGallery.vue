@@ -14,7 +14,7 @@
         @click="pick(e)"
       >
         <div class="imgwrap">
-          <img :src="asset(`demo/${e.key}.png`)" :alt="e.label" loading="lazy" />
+          <img :src="asset(`demo/${e.key}.jpg`)" :alt="e.label" loading="lazy" />
           <span class="emobadge">{{ e.emoji }} {{ e.label }}</span>
         </div>
       </button>
@@ -32,7 +32,7 @@ const pickedKey = ref('')
 
 function pick(e) {
   pickedKey.value = e.key
-  emit('pick', { url: asset(`demo/${e.key}.png`), key: e.key, label: e.label })
+  emit('pick', { url: asset(`demo/${e.key}.jpg`), key: e.key, label: e.label })
 }
 </script>
 
