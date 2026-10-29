@@ -1,0 +1,31 @@
+:root {
+  color-scheme: dark;
+  --bg: #070b16;
+  --panel: #111a2e;
+  --line: rgba(255, 255, 255, .08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #app {
+  min-height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #e6edf7;
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgba(99, 102, 241, .18), transparent 60%),
+    radial-gradient(1000px 500px at 100% 0%, rgba(34, 211, 238, .12), transparent 55%),
+    radial-gradient(900px 600px at 50% 120%, rgba(139, 92, 246, .12), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: inherit; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .12); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, .2); }
+::-webkit-scrollbar-track { background: transparent; }
