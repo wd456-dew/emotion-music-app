@@ -5,6 +5,22 @@
 
 ---
 
+## ✅ 当前线上状态（已完成）
+
+| 项目 | 地址 | 状态 |
+| --- | --- | --- |
+| GitHub 仓库 | https://github.com/wd456-dew/emotion-music-app | 公开 |
+| GitHub Pages | https://wd456-dew.github.io/emotion-music-app/ | 已上线，Actions 自动部署 |
+
+发布方式：仓库 **Settings → Pages → Build and deployment → Source** = **GitHub Actions**，
+之后每次 `git push origin main` 都会自动 `npm ci && npm run build` 并发布 `dist/`。
+
+验证记录（真实 Chrome，对线上地址跑完整链路）：
+- 模型 / 演示图 / 音频全部 `200`，音频为 `206` 分段流式播放
+- 识别 → 推荐 → 播放连通，7 张演示图中 6 张精准命中（详见 README「验证结果」）
+
+---
+
 ## 方案 A：Surge（最快，1 分钟）
 
 ```bash
@@ -59,5 +75,5 @@ gh repo create emotion-music-app --public --source=. --push
 ## 说明
 
 - 摄像头功能需 HTTPS 或 localhost；Surge / GitHub Pages 均默认 HTTPS。
-- 本地歌曲与演示图随 `dist/` 一起发布（约 40MB），首次加载略大。
+- 本地歌曲与演示图随 `dist/` 一起发布（约 29MB，其中歌曲 26MB 按需流式加载，演示图已压缩至 1.3MB）。
 - 在线音源走 iTunes 官方接口（浏览器直连、CORS 开放），无需后端。

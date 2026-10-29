@@ -7,6 +7,17 @@
 
 ---
 
+## 〇、在线体验 / 仓库
+
+| 项目 | 地址 |
+| --- | --- |
+| 🌐 **在线演示（GitHub Pages）** | https://wd456-dew.github.io/emotion-music-app/ |
+| 📦 **GitHub 仓库** | https://github.com/wd456-dew/emotion-music-app |
+
+> Pages 为 HTTPS，**摄像头可直接使用**。部署流程见 [`docs/DEPLOY.md`](docs/DEPLOY.md)。
+
+---
+
 ## 一、启动方式
 
 ```bash

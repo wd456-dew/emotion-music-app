@@ -3,12 +3,14 @@ const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
 const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', args: ['--no-sandbox', '--use-gl=swiftshader', '--enable-unsafe-swiftshader'] })
 const page = await browser.newPage()
 await page.setViewport({ width: 1460, height: 1200, deviceScaleFactor: 1 })
-await page.goto('http://localhost:5173/', { waitUntil: 'networkidle2', timeout: 60000 })
-await page.waitForFunction(() => document.body.innerText.includes('本地模型就绪'), { timeout: 90000 })
+const BASE = process.argv[2] || 'http://localhost:5173/'
+const OUT = process.argv[3] || '.tmp/preview.png'
+await page.goto(BASE, { waitUntil: 'domcontentloaded', timeout: 120000 })
+await page.waitForFunction(() => document.body.innerText.includes('本地模型就绪'), { timeout: 180000 })
 await page.evaluate(() => document.querySelectorAll('.gallery .card')[0].click())
 await page.waitForFunction(() => !!document.querySelector('.ename'), { timeout: 40000 })
 await new Promise(r => setTimeout(r, 2500))
-await page.screenshot({ path: '.tmp/preview.png', fullPage: true })
+await page.screenshot({ path: OUT, fullPage: true })
 const txt = await page.evaluate(() => ({
   emotion: document.querySelector('.ename')?.innerText,
   top: document.querySelectorAll('.sec')[0]?.querySelector('.list li .t')?.innerText

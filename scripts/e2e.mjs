@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer-core'
 
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
-const URL = 'http://localhost:5173/'
+const URL = process.argv[2] || 'http://localhost:5173/'
 const EXPECT = ['happy', 'sad', 'angry', 'fearful', 'disgusted', 'surprised', 'neutral']
 const ZH = { happy: '开心', sad: '悲伤', angry: '愤怒', fearful: '恐惧', disgusted: '厌恶', surprised: '惊讶', neutral: '平静' }
 
@@ -16,8 +16,8 @@ const errs = []
 page.on('pageerror', e => errs.push('[pageerror] ' + e.message))
 page.on('console', m => { if (m.type() === 'error') errs.push('[console.error] ' + m.text()) })
 
-await page.goto(URL, { waitUntil: 'networkidle2', timeout: 60000 })
-await page.waitForFunction(() => document.body.innerText.includes('本地模型就绪'), { timeout: 90000 })
+await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120000 })
+await page.waitForFunction(() => document.body.innerText.includes('本地模型就绪'), { timeout: 180000 })
 console.log('✅ 模型加载完成')
 
 const rows = []
